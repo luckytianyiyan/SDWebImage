@@ -10,6 +10,9 @@
 #import "UIImage+GIF.h"
 #import "NSData+ImageContentType.h"
 #import <ImageIO/ImageIO.h>
+// 修改 {
+#import "UIImage+Coding.h"
+// }
 
 #ifdef SD_WEBP
 #import "UIImage+WebP.h"
@@ -35,6 +38,9 @@
 #endif
     else {
         image = [[UIImage alloc] initWithData:data];
+        // 修改 {
+        image = [image imageCompressForPublish];
+        // }
         UIImageOrientation orientation = [self sd_imageOrientationFromImageData:data];
         if (orientation != UIImageOrientationUp) {
             image = [UIImage imageWithCGImage:image.CGImage
